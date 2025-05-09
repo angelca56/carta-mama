@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #ffe6f0;
+  padding: 10px; /* Agregado para evitar que el contenido toque los bordes en pantallas pequeñas */
+}
+
+.card {
+  width: 400px;
+  height: 600px; /* Aumentamos la altura a 600px */
+  perspective: 1000px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: transform 1s ease-in-out; /* Suavizamos la transición */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de aumento */
+  box-shadow: 0 0 20px rgba(255, 182, 201, 0.6); /* Brillo suave */
+}
+
+.card-front, .card-inside {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Cambiado para que el contenido inicie arriba */
+  align-items: center;
+  transition: transform 1s;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permite scroll si el contenido se sale */
+}
+
+.card-front {
+  background: #ffb3c6;
+  color: white;
+  transform: rotateY(0deg);
+  z-index: 2;
+  text-align: center;
+  font-size: 28px;
+  position: relative;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* centrado horizontal */
+  align-items: center;     /* centrado vertical */
+}
+
+.front-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-inside {
+  background: #fff0f5;
+  color: #333;
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.card.open .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card.open .card-inside {
+  transform: rotateY(0deg);
+}
+
+.signature {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Tamaño de la flor */
+.card-front h1 {
+  font-size: 36px;
+}
+
+.card-front p {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Flor decorativa debajo del texto */
+.card-front .flower {
+  font-size: 40px;
+  margin-top: 20px;
+}
+
+/* Media Query para pantallas pequeñas (móviles) */
+@media screen and (max-width: 600px) {
+  .card {
+    width: 90%;  /* Hacemos que la tarjeta ocupe el 90% del ancho de la pantalla en móvil */
+    height: auto;
+  }
+
+  .card-front, .card-inside {
+    padding: 15px;  /* Menos padding en pantallas pequeñas */
+  }
+
+  .card-front h1 {
+    font-size: 30px; /* Reducimos el tamaño de la fuente en móviles */
+  }
+
+  .card-front p {
+    font-size: 18px; /* Reducimos el tamaño de la fuente en móviles */
+  }
+
+  .card-front .flower {
+    font-size: 30px;  /* Ajustamos el tamaño de la flor en móviles */
+    margin-top: 10px; /* Menos margen en móviles */
+  }
+}
